@@ -8,9 +8,9 @@ const geist = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Scheune Jonathal — Zur Vermietung",
+  title: "Scheune Jonatal — Zur Vermietung",
   description:
-    "Großzügige Scheune in Jonathal zu vermieten. Ideal für landwirtschaftliche Nutzung. Kontaktieren Sie uns für mehr Informationen.",
+    "Grosszügige Scheune im Jonatal, Wald ZH zu vermieten. Ideal für landwirtschaftliche Nutzung. Kontaktieren Sie uns für mehr Informationen.",
 };
 
 export default function RootLayout({

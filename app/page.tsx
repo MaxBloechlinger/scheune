@@ -59,7 +59,7 @@ export default function Home() {
       <header className="fixed top-0 inset-x-0 z-50 bg-[#f8f6f0]/90 backdrop-blur border-b border-stone-200">
         <nav className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
           <span className="font-semibold tracking-tight text-stone-800">
-            Scheune Jonathal
+            Scheune Jonatal
           </span>
           <ul className="hidden sm:flex gap-7 text-sm text-stone-600">
             {NAV_LINKS.map((l) => (
@@ -104,13 +104,13 @@ export default function Home() {
 
           <div className="relative z-10 max-w-5xl mx-auto px-6 pb-20 w-full">
             <p className="text-stone-300 text-sm uppercase tracking-widest mb-3">
-              Jonathal, Thüringen
+              Jonatal, Wald ZH
             </p>
             <h1 className="text-4xl sm:text-6xl font-bold text-white leading-tight max-w-2xl">
               Scheune zur<br />Vermietung
             </h1>
             <p className="mt-5 text-stone-300 text-lg max-w-xl leading-relaxed">
-              Geräumige, gut erhaltene Scheune im ländlichen Jonathal — ideal
+              Geräumige, gut erhaltene Scheune im Jonatal bei Wald ZH — ideal
               für Landwirtschaft, Lagerung und mehr. Langfristige Vermietung
               bevorzugt.
             </p>
