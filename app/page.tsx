@@ -230,7 +230,7 @@ export default function Home() {
                   <span className="w-8 h-8 rounded-full bg-stone-200 flex items-center justify-center text-base">
                     @
                   </span>
-                  <span>info@scheune-Jonatal.ch</span>
+                  <span>info@scheune-jonatal.ch</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <span className="w-8 h-8 rounded-full bg-stone-200 flex items-center justify-center text-base">
