@@ -59,7 +59,7 @@ export default function Home() {
       <header className="fixed top-0 inset-x-0 z-50 bg-[#f8f6f0]/90 backdrop-blur border-b border-stone-200">
         <nav className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
           <span className="font-semibold tracking-tight text-stone-800">
-            Scheune Jonatal
+            Scheune Jonathal
           </span>
           <ul className="hidden sm:flex gap-7 text-sm text-stone-600">
             {NAV_LINKS.map((l) => (
@@ -104,13 +104,13 @@ export default function Home() {
 
           <div className="relative z-10 max-w-5xl mx-auto px-6 pb-20 w-full">
             <p className="text-stone-300 text-sm uppercase tracking-widest mb-3">
-              Jonatal, Wald ZH
+              Jonathal, Wald ZH
             </p>
             <h1 className="text-4xl sm:text-6xl font-bold text-white leading-tight max-w-2xl">
               Scheune zur<br />Vermietung
             </h1>
             <p className="mt-5 text-stone-300 text-lg max-w-xl leading-relaxed">
-              Geräumige, gut erhaltene Scheune im Jonatal bei Wald ZH — ideal
+              Geräumige, gut erhaltene Scheune im Jonathal bei Wald ZH — ideal
               für Landwirtschaft, Lagerung und mehr. Langfristige Vermietung
               bevorzugt.
             </p>
@@ -187,12 +187,12 @@ export default function Home() {
                 Lage
               </p>
               <h2 className="text-3xl font-bold text-stone-800 mb-5">
-                Ruhige Lage in Jonathal
+                Idyllische Lage im Jonathal
               </h2>
               <p className="text-stone-600 leading-relaxed mb-4">
-                Jonathal liegt im Herzen Thüringens — umgeben von Feldern und
-                Wäldern, mit guter Anbindung an die umliegenden Ortschaften und
-                Kreisstraßen.
+                Das Jonathal liegt in der Gemeinde Wald im Zürcher Oberland —
+                eingebettet in die hügelige Landschaft des Kantons Zürich, ruhig
+                und doch gut erreichbar.
               </p>
               <p className="text-stone-600 leading-relaxed">
                 Die ländliche Lage bietet optimale Voraussetzungen für
@@ -202,8 +202,8 @@ export default function Home() {
             </div>
             <div className="rounded-2xl overflow-hidden border border-stone-200 aspect-video">
               <iframe
-                title="Karte Jonathal"
-                src="https://www.openstreetmap.org/export/embed.html?bbox=10.75%2C50.87%2C10.85%2C50.93&layer=mapnik"
+                title="Karte Jonathal, Wald ZH"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=8.87%2C47.26%2C8.98%2C47.30&layer=mapnik"
                 className="w-full h-full"
                 loading="lazy"
               />
@@ -230,7 +230,7 @@ export default function Home() {
                   <span className="w-8 h-8 rounded-full bg-stone-200 flex items-center justify-center text-base">
                     @
                   </span>
-                  <span>info@scheune-jonathal.de</span>
+                  <span>info@scheune-jonathal.ch</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <span className="w-8 h-8 rounded-full bg-stone-200 flex items-center justify-center text-base">
@@ -280,7 +280,7 @@ export default function Home() {
                       name="phone"
                       value={formState.phone}
                       onChange={handleChange}
-                      placeholder="+49 …"
+                      placeholder="+41 …"
                       className="w-full border border-stone-200 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-stone-400 transition-colors bg-stone-50"
                     />
                   </label>
@@ -329,7 +329,7 @@ export default function Home() {
       <footer className="py-8 bg-stone-900 text-stone-400 text-sm">
         <div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-3">
           <span>© {new Date().getFullYear()} Scheune Jonathal</span>
-          <span>Jonathal, Thüringen</span>
+          <span>Jonathal, Wald ZH, Schweiz</span>
         </div>
       </footer>
     </>
