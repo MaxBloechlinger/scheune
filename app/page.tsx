@@ -190,7 +190,7 @@ export default function Home() {
                 Idyllische Lage im Jonatal
               </h2>
               <p className="text-stone-600 leading-relaxed mb-4">
-                Das Jonatal liegt in der Gemeinde Wald im Zürcher Oberland —
+                Das Jonatal liegt in der Gemeinde Wald im Zürcher Oberland -
                 eingebettet in die hügelige Landschaft des Kantons Zürich, ruhig
                 und doch gut erreichbar.
               </p>
@@ -222,8 +222,7 @@ export default function Home() {
                 Interesse geweckt?
               </h2>
               <p className="text-stone-600 leading-relaxed mb-8">
-                Senden Sie uns Ihre Anfrage — wir melden uns innerhalb von 24
-                Stunden. Besichtigungen sind selbstverständlich möglich.
+                Senden Sie uns Ihre Anfrage. Besichtigungen sind selbstverständlich möglich.
               </p>
               <div className="space-y-4 text-stone-700 text-sm">
                 <div className="flex items-center gap-3">
