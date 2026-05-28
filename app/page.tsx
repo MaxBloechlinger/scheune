@@ -1,6 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
+
+const LeafletMap = dynamic(() => import("./LeafletMap"), { ssr: false });
 
 const NAV_LINKS = [
   { label: "Objekt", href: "#objekt" },
@@ -201,12 +204,7 @@ export default function Home() {
               </p>
             </div>
             <div className="rounded-2xl overflow-hidden border border-stone-200 aspect-video">
-              <iframe
-                title="Karte Jonatal, Wald ZH"
-                src="https://www.openstreetmap.org/export/embed.html?bbox=8.87%2C47.26%2C8.98%2C47.30&layer=mapnik"
-                className="w-full h-full"
-                loading="lazy"
-              />
+              <LeafletMap />
             </div>
           </div>
         </section>
