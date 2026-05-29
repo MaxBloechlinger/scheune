@@ -328,11 +328,15 @@ export default function Home() {
                     className="w-full border border-stone-200 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-stone-400 transition-colors bg-stone-50 resize-none"
                   />
                 </label>
+                {submitError && (
+                  <p className="text-red-600 text-sm">{submitError}</p>
+                )}
                 <button
                   type="submit"
-                  className="w-full bg-stone-800 text-white py-3 rounded-xl font-medium hover:bg-stone-700 transition-colors text-sm"
+                  disabled={submitting}
+                  className="w-full bg-stone-800 text-white py-3 rounded-xl font-medium hover:bg-stone-700 transition-colors text-sm disabled:opacity-50"
                 >
-                  Anfrage absenden
+                  {submitting ? "Wird gesendet…" : "Anfrage absenden"}
                 </button>
               </form>
             )}
