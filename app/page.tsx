@@ -43,6 +43,8 @@ export default function Home() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -50,9 +52,25 @@ export default function Home() {
     setFormState((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
-  function handleSubmit(e: React.SyntheticEvent) {
+  async function handleSubmit(e: React.SyntheticEvent) {
     e.preventDefault();
-    // Replace with your own form handler / email service (e.g. Resend, Formspree)
+    setSubmitting(true);
+    setSubmitError(null);
+
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formState),
+    });
+
+    setSubmitting(false);
+
+    if (!res.ok) {
+      const { error } = await res.json();
+      setSubmitError(error ?? "Unbekannter Fehler. Bitte versuchen Sie es erneut.");
+      return;
+    }
+
     setSubmitted(true);
   }
 
