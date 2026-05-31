@@ -76,7 +76,7 @@ export default function Home() {
 
   return (
     <>
-      {/* ── NAV ─────────────────────────────────────────── */}
+      {/*NAV*/}
       <header className="fixed top-0 inset-x-0 z-50 bg-[#f8f6f0]/90 backdrop-blur border-b border-stone-200">
         <nav className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
           <span className="font-semibold tracking-tight text-stone-800">
@@ -104,7 +104,7 @@ export default function Home() {
       </header>
 
       <main className="pt-14">
-        {/* ── HERO ────────────────────────────────────────── */}
+        {/*HERO*/}
         <section
           id="objekt"
           className="relative min-h-[92vh] flex items-end bg-stone-800 overflow-hidden"
@@ -153,7 +153,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── FEATURES ────────────────────────────────────── */}
+        {/*FEATURES*/}
         <section id="details" className="py-24 bg-[#f8f6f0]">
           <div className="max-w-5xl mx-auto px-6">
             <p className="text-stone-500 text-sm uppercase tracking-widest mb-2">
@@ -201,7 +201,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── LOCATION ────────────────────────────────────── */}
+        {/*LOCATION*/}
         <section id="lage" className="py-24 bg-stone-100">
           <div className="max-w-5xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -228,7 +228,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── CONTACT ─────────────────────────────────────── */}
+        {/*CONTACT*/}
         <section id="kontakt" className="py-24 bg-[#f8f6f0]">
           <div className="max-w-5xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-start">
             <div>
@@ -345,7 +345,7 @@ export default function Home() {
         </section>
       </main>
 
-      {/* ── FOOTER ──────────────────────────────────────── */}
+      {/*FOOTER*/}
       <footer className="py-8 bg-stone-900 text-stone-400 text-sm">
         <div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-3">
           <span>© {new Date().getFullYear()} Scheune Jonatal</span>
