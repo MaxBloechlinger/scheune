@@ -114,8 +114,9 @@ export default function Home() {
             aria-hidden
             className="absolute inset-0 bg-stone-700"
             style={{
-              backgroundImage:
-                "repeating-linear-gradient(135deg, transparent, transparent 40px, rgba(0,0,0,.04) 40px, rgba(0,0,0,.04) 80px)",
+              backgroundImage: `url('/placeholder-scheune.png')`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
             }}
           />
           <div
