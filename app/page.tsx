@@ -109,7 +109,7 @@ export default function Home() {
           id="objekt"
           className="relative min-h-[92vh] flex items-end bg-stone-800 overflow-hidden"
         >
-          {/* Placeholder bg — replace src with a real photo once available */}
+          {/* Placeholder bg*/}
           <div
             aria-hidden
             className="absolute inset-0 bg-stone-700"
