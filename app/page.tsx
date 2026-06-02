@@ -8,6 +8,7 @@ const LeafletMap = dynamic(() => import("./LeafletMap"), { ssr: false });
 const NAV_LINKS = [
   { label: "Objekt", href: "#objekt" },
   { label: "Details", href: "#details" },
+  { label: "Grundstück", href: "#grundstueck" },
   { label: "Lage", href: "#lage" },
   { label: "Kontakt", href: "#kontakt" },
 ];
@@ -197,6 +198,42 @@ export default function Home() {
                   <p className="text-stone-500 text-sm mt-1">{s.label}</p>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── GRUNDSTÜCK ──────────────────────────────────── */}
+        <section id="grundstueck" className="py-24 bg-white">
+          <div className="max-w-5xl mx-auto px-6">
+            <p className="text-stone-500 text-sm uppercase tracking-widest mb-2">
+              Grundstück
+            </p>
+            <h2 className="text-3xl font-bold text-stone-800 mb-12">
+              Zwei angrenzende Parzellen
+            </h2>
+            <div className="grid sm:grid-cols-2 gap-6">
+              <div className="rounded-2xl border border-stone-100 bg-stone-50 p-8">
+                <p className="text-xs text-stone-400 uppercase tracking-widest mb-2">
+                  Parzelle 1
+                </p>
+                <h3 className="text-xl font-semibold text-stone-800 mb-3">
+                  Bauland
+                </h3>
+                <div className="rounded-xl border-2 border-dashed border-stone-200 flex items-center justify-center h-24">
+                  <p className="text-stone-400 text-sm">Details folgen demnächst.</p>
+                </div>
+              </div>
+              <div className="rounded-2xl border border-stone-100 bg-stone-50 p-8">
+                <p className="text-xs text-stone-400 uppercase tracking-widest mb-2">
+                  Parzelle 2
+                </p>
+                <h3 className="text-xl font-semibold text-stone-800 mb-3">
+                  Landwirtschaftsland
+                </h3>
+                <div className="rounded-xl border-2 border-dashed border-stone-200 flex items-center justify-center h-24">
+                  <p className="text-stone-400 text-sm">Details folgen demnächst.</p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
