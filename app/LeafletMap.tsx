@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Map } from "leaflet";
 //47.295070, 8.916236
 const LAT = 47.295070;
@@ -10,6 +10,7 @@ const ZOOM = 14;
 export default function LeafletMap() {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<Map | null>(null);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return;
@@ -48,6 +49,7 @@ export default function LeafletMap() {
         .openPopup();
 
       mapRef.current = map;
+      if (!cancelled) setLoaded(true);
     })();
 
     return () => {
@@ -57,5 +59,15 @@ export default function LeafletMap() {
     };
   }, []);
 
-  return <div ref={containerRef} className="w-full h-full" />;
+  return (
+    <div className="relative w-full h-full">
+      {!loaded && (
+        <div className="absolute inset-0 bg-stone-200 animate-pulse" />
+      )}
+      <div
+        ref={containerRef}
+        className={`w-full h-full transition-opacity duration-500 ${loaded ? "opacity-100" : "opacity-0"}`}
+      />
+    </div>
+  );
 }
