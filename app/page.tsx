@@ -489,10 +489,40 @@ export default function Home() {
       </main>
 
       {/* FOOTER */}
-      <footer className="py-8 bg-stone-900 text-stone-400 text-sm">
-        <div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-3">
-          <span>© {new Date().getFullYear()} Scheune Jonatal</span>
-          <span>Jonatal, Wald ZH, Schweiz</span>
+      <footer className="pt-14 pb-8 bg-stone-900 text-stone-400 text-sm">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="grid sm:grid-cols-3 gap-10 pb-10 border-b border-stone-800">
+            <div>
+              <p className="text-stone-200 font-semibold mb-2">Scheune Jonatal</p>
+              <p className="text-stone-500 text-xs leading-relaxed">
+                Geräumige Scheune zur Vermietung im<br />Jonatal, Wald ZH, Schweiz.
+              </p>
+            </div>
+            <div>
+              <p className="text-stone-500 text-xs uppercase tracking-widest mb-3">Navigation</p>
+              <ul className="space-y-2">
+                {NAV_LINKS.map((l) => (
+                  <li key={l.href}>
+                    <a href={l.href} className="hover:text-stone-200 transition-colors duration-200">
+                      {l.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <p className="text-stone-500 text-xs uppercase tracking-widest mb-3">Kontakt</p>
+              <a
+                href="mailto:info@scheune-jonatal.ch"
+                className="hover:text-stone-200 transition-colors duration-200"
+              >
+                info@scheune-jonatal.ch
+              </a>
+            </div>
+          </div>
+          <p className="pt-6 text-stone-600 text-xs">
+            © {new Date().getFullYear()} Scheune Jonatal
+          </p>
         </div>
       </footer>
     </>
