@@ -8,9 +8,23 @@ const geist = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Scheune Jonatal - Zur Vermietung",
+  title: "Scheune Jonatal – Zur Vermietung",
   description:
     "Grosszügige Scheune im Jonatal, Wald ZH zu vermieten. Ideal für landwirtschaftliche Nutzung. Kontaktieren Sie uns für mehr Informationen.",
+  openGraph: {
+    title: "Scheune Jonatal – Zur Vermietung",
+    description:
+      "Grosszügige Scheune im Jonatal, Wald ZH zu vermieten. Ideal für landwirtschaftliche Nutzung.",
+    type: "website",
+    locale: "de_CH",
+    siteName: "Scheune Jonatal",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Scheune Jonatal – Zur Vermietung",
+    description:
+      "Grosszügige Scheune im Jonatal, Wald ZH zu vermieten. Ideal für landwirtschaftliche Nutzung.",
+  },
 };
 
 export default function RootLayout({
