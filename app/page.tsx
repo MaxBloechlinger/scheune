@@ -88,6 +88,8 @@ function useScrollReveal() {
 export default function Home() {
   useScrollReveal();
 
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -146,13 +148,42 @@ export default function Home() {
               </li>
             ))}
           </ul>
-          <a
-            href="#kontakt"
-            className="text-sm bg-stone-800 text-stone-50 px-4 py-1.5 rounded-full hover:bg-stone-700 active:scale-95 transition-all duration-200"
-          >
-            Anfrage senden
-          </a>
+          <div className="flex items-center gap-3">
+            <a
+              href="#kontakt"
+              className="text-sm bg-stone-800 text-stone-50 px-4 py-1.5 rounded-full hover:bg-stone-700 active:scale-95 transition-all duration-200"
+            >
+              Anfrage senden
+            </a>
+            {/* Hamburger — mobile only */}
+            <button
+              onClick={() => setMobileMenuOpen((o) => !o)}
+              aria-label="Menü öffnen"
+              className="sm:hidden relative w-6 h-5 flex flex-col justify-between"
+            >
+              <span className={`block h-0.5 w-6 bg-stone-800 transition-all duration-300 origin-center ${mobileMenuOpen ? "translate-y-[9px] rotate-45" : ""}`} />
+              <span className={`block h-0.5 w-6 bg-stone-800 transition-all duration-300 ${mobileMenuOpen ? "opacity-0 scale-x-0" : ""}`} />
+              <span className={`block h-0.5 w-6 bg-stone-800 transition-all duration-300 origin-center ${mobileMenuOpen ? "-translate-y-[9px] -rotate-45" : ""}`} />
+            </button>
+          </div>
         </nav>
+
+        {/* Mobile dropdown */}
+        <div className={`sm:hidden overflow-hidden transition-all duration-300 ease-in-out ${mobileMenuOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0"}`}>
+          <ul className="flex flex-col px-6 py-4 gap-4 text-sm text-stone-700 border-t border-stone-100">
+            {NAV_LINKS.map((l) => (
+              <li key={l.href}>
+                <a
+                  href={l.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block hover:text-stone-900 transition-colors"
+                >
+                  {l.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </header>
 
       <main className="pt-14">
