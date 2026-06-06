@@ -296,12 +296,7 @@ export default function Home() {
               >
                 Jetzt anfragen
               </button>
-              <a
-                href="#details"
-                className="border border-white/40 text-white px-6 py-3 rounded-full font-medium hover:border-white/80 hover:bg-white/10 active:scale-95 transition-all duration-200"
-              >
-                Details ansehen
-              </a>
+
             </div>
           </div>
 
