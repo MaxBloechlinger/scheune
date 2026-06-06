@@ -167,7 +167,7 @@ function ContactForm() {
       {submitError && <p className="text-red-600 text-sm">{submitError}</p>}
       <button
         type="submit" disabled={submitting}
-        className="w-full bg-stone-800 text-white py-3 rounded-xl font-medium hover:bg-stone-700 active:scale-[0.98] transition-all duration-200 text-sm disabled:opacity-50"
+        className="w-full bg-amber-700 text-white py-3 rounded-xl font-medium hover:bg-amber-800 active:scale-[0.98] transition-all duration-200 text-sm disabled:opacity-50"
       >
         {submitting ? "Wird gesendet…" : "Anfrage absenden"}
       </button>
@@ -222,7 +222,7 @@ export default function Home() {
           <div className="flex items-center gap-3">
             <button
               onClick={() => setModalOpen(true)}
-              className="text-sm bg-stone-800 text-stone-50 px-4 py-1.5 rounded-full hover:bg-stone-700 active:scale-95 transition-all duration-200"
+              className="text-sm bg-amber-700 text-white px-4 py-1.5 rounded-full hover:bg-amber-800 active:scale-95 transition-all duration-200"
             >
               Anfrage senden
             </button>
@@ -278,7 +278,7 @@ export default function Home() {
           />
 
           <div className="relative z-10 max-w-5xl mx-auto px-6 pb-20 w-full">
-            <p className="animate-fade-in text-stone-300 text-sm uppercase tracking-widest mb-3" style={{ animationDelay: "0.15s" }}>
+            <p className="animate-fade-in text-amber-400 text-sm uppercase tracking-widest mb-3" style={{ animationDelay: "0.15s" }}>
               Jonatal, Wald ZH
             </p>
             <h1 className="animate-fade-up text-4xl sm:text-6xl font-bold text-white leading-tight max-w-2xl" style={{ animationDelay: "0.28s" }}>
@@ -292,7 +292,7 @@ export default function Home() {
             <div className="animate-fade-up mt-8 flex flex-wrap gap-4" style={{ animationDelay: "0.56s" }}>
               <button
                 onClick={() => setModalOpen(true)}
-                className="bg-white text-stone-900 px-6 py-3 rounded-full font-medium hover:bg-stone-100 active:scale-95 transition-all duration-200"
+                className="bg-amber-600 text-white px-6 py-3 rounded-full font-medium hover:bg-amber-700 active:scale-95 transition-all duration-200"
               >
                 Jetzt anfragen
               </button>
@@ -313,7 +313,7 @@ export default function Home() {
         {/* FEATURES */}
         <section id="details" className="py-24 bg-[#f8f6f0]">
           <div className="max-w-5xl mx-auto px-6">
-            <p className="reveal text-stone-500 text-sm uppercase tracking-widest mb-2">Ausstattung</p>
+            <p className="reveal text-amber-700 text-sm uppercase tracking-widest mb-2">Ausstattung</p>
             <h2 className="reveal reveal-d1 text-3xl font-bold text-stone-800 mb-12">Was Sie erwartet</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {FEATURES.map((f, i) => (
@@ -321,7 +321,7 @@ export default function Home() {
                   key={f.title}
                   className={`reveal reveal-d${i + 1} group bg-white rounded-2xl p-6 shadow-sm border border-stone-100 hover:shadow-md hover:-translate-y-1 transition-all duration-300`}
                 >
-                  <span className="text-stone-400 mb-4 block group-hover:text-stone-600 transition-colors duration-300">
+                  <span className="text-stone-400 mb-4 block group-hover:text-amber-600 transition-colors duration-300">
                     {f.icon}
                   </span>
                   <h3 className="font-semibold text-stone-800 mb-2">{f.title}</h3>
@@ -353,7 +353,7 @@ export default function Home() {
         {/* GRUNDSTÜCK */}
         <section id="grundstueck" className="py-24 bg-white">
           <div className="max-w-5xl mx-auto px-6">
-            <p className="reveal text-stone-500 text-sm uppercase tracking-widest mb-2">Grundstück</p>
+            <p className="reveal text-amber-700 text-sm uppercase tracking-widest mb-2">Grundstück</p>
             <h2 className="reveal reveal-d1 text-3xl font-bold text-stone-800 mb-12">Zwei angrenzende Parzellen</h2>
             <div className="grid sm:grid-cols-2 gap-6">
               <div className="reveal reveal-d1 rounded-2xl border border-stone-100 bg-stone-50 p-8 hover:shadow-sm transition-shadow duration-300">
@@ -378,7 +378,7 @@ export default function Home() {
         <section id="lage" className="py-24 bg-stone-100">
           <div className="max-w-5xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <p className="reveal text-stone-500 text-sm uppercase tracking-widest mb-2">Lage</p>
+              <p className="reveal text-amber-700 text-sm uppercase tracking-widest mb-2">Lage</p>
               <h2 className="reveal reveal-d1 text-3xl font-bold text-stone-800 mb-5">Idyllische Lage im Jonatal</h2>
               <p className="reveal reveal-d2 text-stone-600 leading-relaxed mb-4">
                 Das Jonatal liegt in der Gemeinde Wald im Zürcher Oberland -
@@ -401,7 +401,7 @@ export default function Home() {
         <section id="kontakt" className="py-24 bg-[#f8f6f0]">
           <div className="max-w-5xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-start">
             <div>
-              <p className="reveal text-stone-500 text-sm uppercase tracking-widest mb-2">Kontakt</p>
+              <p className="reveal text-amber-700 text-sm uppercase tracking-widest mb-2">Kontakt</p>
               <h2 className="reveal reveal-d1 text-3xl font-bold text-stone-800 mb-5">Interesse geweckt?</h2>
               <p className="reveal reveal-d2 text-stone-600 leading-relaxed mb-8">
                 Senden Sie uns Ihre Anfrage. Besichtigungen sind selbstverständlich möglich.
