@@ -85,18 +85,7 @@ function useScrollReveal() {
   }, []);
 }
 
-export default function Home() {
-  useScrollReveal();
-
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [showTop, setShowTop] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setShowTop(window.scrollY > 500);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
+function ContactForm() {
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -107,9 +96,7 @@ export default function Home() {
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
-  function handleChange(
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     setFormState((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
@@ -117,23 +104,100 @@ export default function Home() {
     e.preventDefault();
     setSubmitting(true);
     setSubmitError(null);
-
     const res = await fetch("/api/contact", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formState),
     });
-
     setSubmitting(false);
-
     if (!res.ok) {
       const { error } = await res.json();
       setSubmitError(error ?? "Unbekannter Fehler. Bitte versuchen Sie es erneut.");
       return;
     }
-
     setSubmitted(true);
   }
+
+  if (submitted) {
+    return (
+      <div className="flex flex-col items-center justify-center text-center gap-4 py-8">
+        <span className="text-4xl text-stone-400">✓</span>
+        <h3 className="text-xl font-semibold text-stone-800">Nachricht erhalten!</h3>
+        <p className="text-stone-500 text-sm">Wir melden uns so schnell wie möglich bei Ihnen.</p>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-5">
+      <div className="grid sm:grid-cols-2 gap-5">
+        <label className="block">
+          <span className="text-xs text-stone-500 uppercase tracking-wider mb-1.5 block">Name *</span>
+          <input
+            required type="text" name="name" value={formState.name} onChange={handleChange}
+            placeholder="Max Mustermann"
+            className="w-full border border-stone-200 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition-all duration-200 bg-stone-50"
+          />
+        </label>
+        <label className="block">
+          <span className="text-xs text-stone-500 uppercase tracking-wider mb-1.5 block">Telefon</span>
+          <input
+            type="tel" name="phone" value={formState.phone} onChange={handleChange}
+            placeholder="+41 …"
+            className="w-full border border-stone-200 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition-all duration-200 bg-stone-50"
+          />
+        </label>
+      </div>
+      <label className="block">
+        <span className="text-xs text-stone-500 uppercase tracking-wider mb-1.5 block">E-Mail *</span>
+        <input
+          required type="email" name="email" value={formState.email} onChange={handleChange}
+          placeholder="name@beispiel.de"
+          className="w-full border border-stone-200 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition-all duration-200 bg-stone-50"
+        />
+      </label>
+      <label className="block">
+        <span className="text-xs text-stone-500 uppercase tracking-wider mb-1.5 block">Nachricht *</span>
+        <textarea
+          required name="message" value={formState.message} onChange={handleChange}
+          rows={4} placeholder="Ich interessiere mich für die Scheune …"
+          className="w-full border border-stone-200 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition-all duration-200 bg-stone-50 resize-none"
+        />
+      </label>
+      {submitError && <p className="text-red-600 text-sm">{submitError}</p>}
+      <button
+        type="submit" disabled={submitting}
+        className="w-full bg-stone-800 text-white py-3 rounded-xl font-medium hover:bg-stone-700 active:scale-[0.98] transition-all duration-200 text-sm disabled:opacity-50"
+      >
+        {submitting ? "Wird gesendet…" : "Anfrage absenden"}
+      </button>
+    </form>
+  );
+}
+
+export default function Home() {
+  useScrollReveal();
+
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [showTop, setShowTop] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setShowTop(window.scrollY > 500);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setModalOpen(false); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = modalOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [modalOpen]);
 
   return (
     <>
@@ -156,12 +220,12 @@ export default function Home() {
             ))}
           </ul>
           <div className="flex items-center gap-3">
-            <a
-              href="#kontakt"
+            <button
+              onClick={() => setModalOpen(true)}
               className="text-sm bg-stone-800 text-stone-50 px-4 py-1.5 rounded-full hover:bg-stone-700 active:scale-95 transition-all duration-200"
             >
               Anfrage senden
-            </a>
+            </button>
             {/* Hamburger — mobile only */}
             <button
               onClick={() => setMobileMenuOpen((o) => !o)}
@@ -214,38 +278,24 @@ export default function Home() {
           />
 
           <div className="relative z-10 max-w-5xl mx-auto px-6 pb-20 w-full">
-            <p
-              className="animate-fade-in text-stone-300 text-sm uppercase tracking-widest mb-3"
-              style={{ animationDelay: "0.15s" }}
-            >
+            <p className="animate-fade-in text-stone-300 text-sm uppercase tracking-widest mb-3" style={{ animationDelay: "0.15s" }}>
               Jonatal, Wald ZH
             </p>
-            <h1
-              className="animate-fade-up text-4xl sm:text-6xl font-bold text-white leading-tight max-w-2xl"
-              style={{ animationDelay: "0.28s" }}
-            >
-              Scheune zur
-              <br />
-              Vermietung
+            <h1 className="animate-fade-up text-4xl sm:text-6xl font-bold text-white leading-tight max-w-2xl" style={{ animationDelay: "0.28s" }}>
+              Scheune zur<br />Vermietung
             </h1>
-            <p
-              className="animate-fade-up mt-5 text-stone-300 text-lg max-w-xl leading-relaxed"
-              style={{ animationDelay: "0.42s" }}
-            >
-              Geräumige, gut erhaltene Scheune im Jonatal bei Wald ZH — ideal
+            <p className="animate-fade-up mt-5 text-stone-300 text-lg max-w-xl leading-relaxed" style={{ animationDelay: "0.42s" }}>
+              Geräumige, gut erhaltene Scheune in Wald, ZH - ideal
               für Landwirtschaft, Lagerung und mehr. Langfristige Vermietung
               bevorzugt.
             </p>
-            <div
-              className="animate-fade-up mt-8 flex flex-wrap gap-4"
-              style={{ animationDelay: "0.56s" }}
-            >
-              <a
-                href="#kontakt"
+            <div className="animate-fade-up mt-8 flex flex-wrap gap-4" style={{ animationDelay: "0.56s" }}>
+              <button
+                onClick={() => setModalOpen(true)}
                 className="bg-white text-stone-900 px-6 py-3 rounded-full font-medium hover:bg-stone-100 active:scale-95 transition-all duration-200"
               >
                 Jetzt anfragen
-              </a>
+              </button>
               <a
                 href="#details"
                 className="border border-white/40 text-white px-6 py-3 rounded-full font-medium hover:border-white/80 hover:bg-white/10 active:scale-95 transition-all duration-200"
@@ -268,12 +318,8 @@ export default function Home() {
         {/* FEATURES */}
         <section id="details" className="py-24 bg-[#f8f6f0]">
           <div className="max-w-5xl mx-auto px-6">
-            <p className="reveal text-stone-500 text-sm uppercase tracking-widest mb-2">
-              Ausstattung
-            </p>
-            <h2 className="reveal reveal-d1 text-3xl font-bold text-stone-800 mb-12">
-              Was Sie erwartet
-            </h2>
+            <p className="reveal text-stone-500 text-sm uppercase tracking-widest mb-2">Ausstattung</p>
+            <h2 className="reveal reveal-d1 text-3xl font-bold text-stone-800 mb-12">Was Sie erwartet</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {FEATURES.map((f, i) => (
                 <div
@@ -283,12 +329,8 @@ export default function Home() {
                   <span className="text-stone-400 mb-4 block group-hover:text-stone-600 transition-colors duration-300">
                     {f.icon}
                   </span>
-                  <h3 className="font-semibold text-stone-800 mb-2">
-                    {f.title}
-                  </h3>
-                  <p className="text-stone-500 text-sm leading-relaxed">
-                    {f.body}
-                  </p>
+                  <h3 className="font-semibold text-stone-800 mb-2">{f.title}</h3>
+                  <p className="text-stone-500 text-sm leading-relaxed">{f.body}</p>
                 </div>
               ))}
             </div>
@@ -316,31 +358,19 @@ export default function Home() {
         {/* GRUNDSTÜCK */}
         <section id="grundstueck" className="py-24 bg-white">
           <div className="max-w-5xl mx-auto px-6">
-            <p className="reveal text-stone-500 text-sm uppercase tracking-widest mb-2">
-              Grundstück
-            </p>
-            <h2 className="reveal reveal-d1 text-3xl font-bold text-stone-800 mb-12">
-              Zwei angrenzende Parzellen
-            </h2>
+            <p className="reveal text-stone-500 text-sm uppercase tracking-widest mb-2">Grundstück</p>
+            <h2 className="reveal reveal-d1 text-3xl font-bold text-stone-800 mb-12">Zwei angrenzende Parzellen</h2>
             <div className="grid sm:grid-cols-2 gap-6">
               <div className="reveal reveal-d1 rounded-2xl border border-stone-100 bg-stone-50 p-8 hover:shadow-sm transition-shadow duration-300">
-                <p className="text-xs text-stone-400 uppercase tracking-widest mb-2">
-                  Parzelle 1
-                </p>
-                <h3 className="text-xl font-semibold text-stone-800 mb-3">
-                  Bauland
-                </h3>
+                <p className="text-xs text-stone-400 uppercase tracking-widest mb-2">Parzelle 1</p>
+                <h3 className="text-xl font-semibold text-stone-800 mb-3">Bauland</h3>
                 <div className="rounded-xl border-2 border-dashed border-stone-200 flex items-center justify-center h-24">
                   <p className="text-stone-400 text-sm">Details folgen demnächst.</p>
                 </div>
               </div>
               <div className="reveal reveal-d2 rounded-2xl border border-stone-100 bg-stone-50 p-8 hover:shadow-sm transition-shadow duration-300">
-                <p className="text-xs text-stone-400 uppercase tracking-widest mb-2">
-                  Parzelle 2
-                </p>
-                <h3 className="text-xl font-semibold text-stone-800 mb-3">
-                  Landwirtschaftsland
-                </h3>
+                <p className="text-xs text-stone-400 uppercase tracking-widest mb-2">Parzelle 2</p>
+                <h3 className="text-xl font-semibold text-stone-800 mb-3">Landwirtschaftsland</h3>
                 <div className="rounded-xl border-2 border-dashed border-stone-200 flex items-center justify-center h-24">
                   <p className="text-stone-400 text-sm">Details folgen demnächst.</p>
                 </div>
@@ -353,12 +383,8 @@ export default function Home() {
         <section id="lage" className="py-24 bg-stone-100">
           <div className="max-w-5xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <p className="reveal text-stone-500 text-sm uppercase tracking-widest mb-2">
-                Lage
-              </p>
-              <h2 className="reveal reveal-d1 text-3xl font-bold text-stone-800 mb-5">
-                Idyllische Lage im Jonatal
-              </h2>
+              <p className="reveal text-stone-500 text-sm uppercase tracking-widest mb-2">Lage</p>
+              <h2 className="reveal reveal-d1 text-3xl font-bold text-stone-800 mb-5">Idyllische Lage im Jonatal</h2>
               <p className="reveal reveal-d2 text-stone-600 leading-relaxed mb-4">
                 Das Jonatal liegt in der Gemeinde Wald im Zürcher Oberland -
                 eingebettet in die hügelige Landschaft des Kantons Zürich, ruhig
@@ -380,116 +406,24 @@ export default function Home() {
         <section id="kontakt" className="py-24 bg-[#f8f6f0]">
           <div className="max-w-5xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-start">
             <div>
-              <p className="reveal text-stone-500 text-sm uppercase tracking-widest mb-2">
-                Kontakt
-              </p>
-              <h2 className="reveal reveal-d1 text-3xl font-bold text-stone-800 mb-5">
-                Interesse geweckt?
-              </h2>
+              <p className="reveal text-stone-500 text-sm uppercase tracking-widest mb-2">Kontakt</p>
+              <h2 className="reveal reveal-d1 text-3xl font-bold text-stone-800 mb-5">Interesse geweckt?</h2>
               <p className="reveal reveal-d2 text-stone-600 leading-relaxed mb-8">
                 Senden Sie uns Ihre Anfrage. Besichtigungen sind selbstverständlich möglich.
               </p>
               <div className="reveal reveal-d3 space-y-4 text-stone-700 text-sm">
                 <div className="flex items-center gap-3">
-                  <span className="w-8 h-8 rounded-full bg-stone-200 flex items-center justify-center text-base">
-                    @
-                  </span>
+                  <span className="w-8 h-8 rounded-full bg-stone-200 flex items-center justify-center text-base">@</span>
                   <span>info@scheune-jonatal.ch</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="w-8 h-8 rounded-full bg-stone-200 flex items-center justify-center text-base">
-                    ✆
-                  </span>
+                  <span className="w-8 h-8 rounded-full bg-stone-200 flex items-center justify-center text-base">✆</span>
                   <span>Telefonnummer auf Anfrage</span>
                 </div>
               </div>
             </div>
-
-            <div className="reveal reveal-d2">
-              {submitted ? (
-                <div className="bg-white rounded-2xl p-8 border border-stone-100 shadow-sm flex flex-col items-center justify-center text-center gap-4 min-h-[360px]">
-                  <span className="text-4xl text-stone-400">✓</span>
-                  <h3 className="text-xl font-semibold text-stone-800">
-                    Nachricht erhalten!
-                  </h3>
-                  <p className="text-stone-500 text-sm">
-                    Wir melden uns so schnell wie möglich bei Ihnen.
-                  </p>
-                </div>
-              ) : (
-                <form
-                  onSubmit={handleSubmit}
-                  className="bg-white rounded-2xl p-8 border border-stone-100 shadow-sm space-y-5"
-                >
-                  <div className="grid sm:grid-cols-2 gap-5">
-                    <label className="block">
-                      <span className="text-xs text-stone-500 uppercase tracking-wider mb-1.5 block">
-                        Name *
-                      </span>
-                      <input
-                        required
-                        type="text"
-                        name="name"
-                        value={formState.name}
-                        onChange={handleChange}
-                        placeholder="Max Mustermann"
-                        className="w-full border border-stone-200 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition-all duration-200 bg-stone-50"
-                      />
-                    </label>
-                    <label className="block">
-                      <span className="text-xs text-stone-500 uppercase tracking-wider mb-1.5 block">
-                        Telefon
-                      </span>
-                      <input
-                        type="tel"
-                        name="phone"
-                        value={formState.phone}
-                        onChange={handleChange}
-                        placeholder="+41 …"
-                        className="w-full border border-stone-200 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition-all duration-200 bg-stone-50"
-                      />
-                    </label>
-                  </div>
-                  <label className="block">
-                    <span className="text-xs text-stone-500 uppercase tracking-wider mb-1.5 block">
-                      E-Mail *
-                    </span>
-                    <input
-                      required
-                      type="email"
-                      name="email"
-                      value={formState.email}
-                      onChange={handleChange}
-                      placeholder="name@beispiel.de"
-                      className="w-full border border-stone-200 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition-all duration-200 bg-stone-50"
-                    />
-                  </label>
-                  <label className="block">
-                    <span className="text-xs text-stone-500 uppercase tracking-wider mb-1.5 block">
-                      Nachricht *
-                    </span>
-                    <textarea
-                      required
-                      name="message"
-                      value={formState.message}
-                      onChange={handleChange}
-                      rows={4}
-                      placeholder="Ich interessiere mich für die Scheune …"
-                      className="w-full border border-stone-200 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-stone-400 focus:ring-2 focus:ring-stone-200 transition-all duration-200 bg-stone-50 resize-none"
-                    />
-                  </label>
-                  {submitError && (
-                    <p className="text-red-600 text-sm">{submitError}</p>
-                  )}
-                  <button
-                    type="submit"
-                    disabled={submitting}
-                    className="w-full bg-stone-800 text-white py-3 rounded-xl font-medium hover:bg-stone-700 active:scale-[0.98] transition-all duration-200 text-sm disabled:opacity-50"
-                  >
-                    {submitting ? "Wird gesendet…" : "Anfrage absenden"}
-                  </button>
-                </form>
-              )}
+            <div className="reveal reveal-d2 bg-white rounded-2xl p-8 border border-stone-100 shadow-sm min-h-[360px] flex flex-col justify-center">
+              <ContactForm />
             </div>
           </div>
         </section>
@@ -510,28 +444,22 @@ export default function Home() {
               <ul className="space-y-2">
                 {NAV_LINKS.map((l) => (
                   <li key={l.href}>
-                    <a href={l.href} className="hover:text-stone-200 transition-colors duration-200">
-                      {l.label}
-                    </a>
+                    <a href={l.href} className="hover:text-stone-200 transition-colors duration-200">{l.label}</a>
                   </li>
                 ))}
               </ul>
             </div>
             <div>
               <p className="text-stone-500 text-xs uppercase tracking-widest mb-3">Kontakt</p>
-              <a
-                href="mailto:info@scheune-jonatal.ch"
-                className="hover:text-stone-200 transition-colors duration-200"
-              >
+              <a href="mailto:info@scheune-jonatal.ch" className="hover:text-stone-200 transition-colors duration-200">
                 info@scheune-jonatal.ch
               </a>
             </div>
           </div>
-          <p className="pt-6 text-stone-600 text-xs">
-            © {new Date().getFullYear()} Scheune Jonatal
-          </p>
+          <p className="pt-6 text-stone-600 text-xs">© {new Date().getFullYear()} Scheune Jonatal</p>
         </div>
       </footer>
+
       {/* BACK TO TOP */}
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
@@ -542,6 +470,31 @@ export default function Home() {
           <polyline points="18 15 12 9 6 15"/>
         </svg>
       </button>
+
+      {/* MODAL */}
+      <div
+        className={`fixed inset-0 z-[100] flex items-center justify-center p-4 transition-all duration-300 ${modalOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+      >
+        <div className="absolute inset-0 bg-stone-900/60 backdrop-blur-sm" onClick={() => setModalOpen(false)} />
+        <div className={`relative bg-white rounded-2xl shadow-2xl w-full max-w-lg p-8 transition-all duration-300 ${modalOpen ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}>
+          <div className="flex items-start justify-between mb-6">
+            <div>
+              <h2 className="text-xl font-bold text-stone-800">Anfrage senden</h2>
+              <p className="text-stone-500 text-sm mt-0.5">Wir melden uns so schnell wie möglich.</p>
+            </div>
+            <button
+              onClick={() => setModalOpen(false)}
+              className="w-8 h-8 rounded-full bg-stone-100 flex items-center justify-center hover:bg-stone-200 active:scale-95 transition-all duration-200 shrink-0"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+          </div>
+          <ContactForm />
+        </div>
+      </div>
     </>
   );
 }
