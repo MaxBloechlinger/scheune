@@ -61,13 +61,10 @@ export default function LeafletMap() {
 
   return (
     <div className="relative w-full h-full">
-      {!loaded && (
-        <div className="absolute inset-0 bg-stone-200 animate-pulse" />
-      )}
       <div
-        ref={containerRef}
-        className={`w-full h-full transition-opacity duration-500 ${loaded ? "opacity-100" : "opacity-0"}`}
+        className={`absolute inset-0 bg-stone-200 animate-pulse transition-opacity duration-500 pointer-events-none ${loaded ? "opacity-0" : "opacity-100"}`}
       />
+      <div ref={containerRef} className="w-full h-full" />
     </div>
   );
 }
