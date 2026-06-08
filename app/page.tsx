@@ -205,7 +205,7 @@ export default function Home() {
       <header className="fixed top-0 inset-x-0 z-50 bg-[#f8f6f0]/90 backdrop-blur border-b border-stone-200">
         <nav className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
           <span className="font-semibold tracking-tight text-stone-800">
-            Scheune Jonatal
+            Scheune Wald ZH
           </span>
           <ul className="hidden sm:flex gap-7 text-sm text-stone-600">
             {NAV_LINKS.map((l) => (
