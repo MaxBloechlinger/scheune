@@ -12,16 +12,16 @@ export const metadata: Metadata = {
   description:
     "Grosszügige Scheune im Jonatal, Wald ZH zu vermieten. Ideal für landwirtschaftliche Nutzung. Kontaktieren Sie uns für mehr Informationen.",
   openGraph: {
-    title: "Scheune Jonatal – Zur Vermietung",
+    title: "Scheune Wald ZH – Zur Vermietung",
     description:
       "Grosszügige Scheune im Jonatal, Wald ZH zu vermieten. Ideal für landwirtschaftliche Nutzung.",
     type: "website",
     locale: "de_CH",
-    siteName: "Scheune Jonatal",
+    siteName: "Scheune Wald ZH",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Scheune Jonatal – Zur Vermietung",
+    title: "Scheune Wald ZH – Zur Vermietung",
     description:
       "Grosszügige Scheune im Jonatal, Wald ZH zu vermieten. Ideal für landwirtschaftliche Nutzung.",
   },

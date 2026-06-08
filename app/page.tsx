@@ -451,7 +451,7 @@ export default function Home() {
               </a>
             </div>
           </div>
-          <p className="pt-6 text-stone-600 text-xs">© {new Date().getFullYear()} Scheune Jonatal</p>
+          <p className="pt-6 text-stone-600 text-xs">© {new Date().getFullYear()} Scheune Wald ZH</p>
         </div>
       </footer>
 
