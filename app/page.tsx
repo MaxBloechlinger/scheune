@@ -76,7 +76,7 @@ const FEATURES = [
   {
     icon: <IconBuilding />,
     title: "Stabile Bausubstanz",
-    body: "Solides Gebäude in gepflegtem Zustand – bereit für den sofortigen Einsatz.",
+    body: "Solides Gebäude in gepflegtem Zustand, bereit für den sofortigen Einsatz.",
   },
   {
     icon: <IconZap />,
