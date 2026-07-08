@@ -16,6 +16,23 @@ const NAV_LINKS = [
   { label: "Kontakt", href: "#kontakt" },
 ];
 
+const GRUNDSTUECK_DATA = [
+  { label: "Grundstück Nr.", value: "9527" },
+  { label: "BFS Nr.", value: "120" },
+  { label: "Notariat", value: "Grundbuchamt Wald" },
+  { label: "EGRIS_EGRID", value: "CH380186487771" },
+  { label: "Fläche Liegenschaft [m²]", value: "535" },
+  { label: "Vollständigkeit", value: "Vollständig" },
+  { label: "Bodenbedeckung Art", value: "Acker, Wiese, Weide" },
+  { label: "Bodenbedeckung Qualität", value: "AV93" },
+  { label: "Bodenbedeckung Fläche [m²]", value: "263 (Gesamtfläche) / 1190" },
+  { label: "Koordinate", value: "2711757 / 1239306" },
+  { label: "X-Koordinate", value: "2711758.241" },
+  { label: "Y-Koordinate", value: "1239307.521" },
+  { label: "Höhe", value: "682.9 m" },
+  { label: "Punktzeichen", value: "Bolzen" },
+];
+
 const GALLERY_IMAGES = [
   "IMG_9418.jpeg",
   "IMG_9419.jpeg",
@@ -347,24 +364,6 @@ export default function Home() {
                 </div>
               ))}
             </div>
-
-            {/* Quick-stats bar */}
-            <div className="mt-14 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
-              {[
-                { value: "~400 m²", label: "Grundfläche" },
-                { value: "~6 m", label: "Firsthöhe" },
-                { value: "Sofort", label: "Verfügbar" },
-                { value: "VHB", label: "Kaltmiete" },
-              ].map((s, i) => (
-                <div
-                  key={s.label}
-                  className={`reveal reveal-d${i + 1} bg-white rounded-xl p-5 border border-stone-100 hover:-translate-y-0.5 transition-transform duration-200`}
-                >
-                  <p className="text-2xl font-bold text-stone-800">{s.value}</p>
-                  <p className="text-stone-500 text-sm mt-1">{s.label}</p>
-                </div>
-              ))}
-            </div>
           </div>
         </section>
 
@@ -383,22 +382,16 @@ export default function Home() {
         <section id="grundstueck" className="py-24 bg-white">
           <div className="max-w-5xl mx-auto px-6">
             <p className="reveal text-amber-700 text-sm uppercase tracking-widest mb-2">Grundstück</p>
-            <h2 className="reveal reveal-d1 text-3xl font-bold text-stone-800 mb-12">Zwei angrenzende Parzellen</h2>
-            <div className="grid sm:grid-cols-2 gap-6">
-              <div className="reveal reveal-d1 rounded-2xl border border-stone-100 bg-stone-50 p-8 hover:shadow-sm transition-shadow duration-300">
-                <p className="text-xs text-stone-400 uppercase tracking-widest mb-2">Parzelle 1</p>
-                <h3 className="text-xl font-semibold text-stone-800 mb-3">Bauland</h3>
-                <div className="rounded-xl border-2 border-dashed border-stone-200 flex items-center justify-center h-24">
-                  <p className="text-stone-400 text-sm">Details folgen demnächst.</p>
-                </div>
-              </div>
-              <div className="reveal reveal-d2 rounded-2xl border border-stone-100 bg-stone-50 p-8 hover:shadow-sm transition-shadow duration-300">
-                <p className="text-xs text-stone-400 uppercase tracking-widest mb-2">Parzelle 2</p>
-                <h3 className="text-xl font-semibold text-stone-800 mb-3">Landwirtschaftsland</h3>
-                <div className="rounded-xl border-2 border-dashed border-stone-200 flex items-center justify-center h-24">
-                  <p className="text-stone-400 text-sm">Details folgen demnächst.</p>
-                </div>
-              </div>
+            <h2 className="reveal reveal-d1 text-3xl font-bold text-stone-800 mb-12">Grundstück Nr. {GRUNDSTUECK_DATA[0].value}</h2>
+            <div className="reveal reveal-d1 rounded-2xl border border-stone-100 bg-stone-50 p-8">
+              <dl className="grid sm:grid-cols-2 gap-x-8 gap-y-5">
+                {GRUNDSTUECK_DATA.map((d) => (
+                  <div key={d.label}>
+                    <dt className="text-xs text-stone-400 uppercase tracking-widest mb-1">{d.label}</dt>
+                    <dd className="text-stone-800 font-medium">{d.value}</dd>
+                  </div>
+                ))}
+              </dl>
             </div>
           </div>
         </section>
