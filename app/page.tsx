@@ -2,16 +2,33 @@
 
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
+import Carousel from "./Carousel";
 
 const LeafletMap = dynamic(() => import("./LeafletMap"), { ssr: false });
 
 const NAV_LINKS = [
   { label: "Objekt", href: "#objekt" },
   { label: "Details", href: "#details" },
+  { label: "Galerie", href: "#galerie" },
   { label: "Grundstück", href: "#grundstueck" },
   { label: "Lage", href: "#lage" },
   { label: "Kontakt", href: "#kontakt" },
 ];
+
+const GALLERY_IMAGES = [
+  "IMG_9418.jpeg",
+  "IMG_9419.jpeg",
+  "IMG_9420.jpeg",
+  "IMG_9421.jpeg",
+  "IMG_9422.jpeg",
+  "IMG_9423.jpeg",
+  "IMG_9424.jpeg",
+  "IMG_9425.jpeg",
+  "IMG_9430.jpeg",
+].map((file, i) => ({
+  src: `/images/${file}`,
+  alt: `Scheune Jonatal – Ansicht ${i + 1}`,
+}));
 
 const IconArea = () => (
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -346,6 +363,17 @@ export default function Home() {
                   <p className="text-stone-500 text-sm mt-1">{s.label}</p>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* GALERIE */}
+        <section id="galerie" className="py-24 bg-white">
+          <div className="max-w-5xl mx-auto px-6">
+            <p className="reveal text-amber-700 text-sm uppercase tracking-widest mb-2">Galerie</p>
+            <h2 className="reveal reveal-d1 text-3xl font-bold text-stone-800 mb-12">Eindrücke der Scheune</h2>
+            <div className="reveal reveal-d2">
+              <Carousel images={GALLERY_IMAGES} />
             </div>
           </div>
         </section>
