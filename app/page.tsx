@@ -299,7 +299,7 @@ export default function Home() {
           className="relative min-h-[92vh] flex items-end bg-stone-800 overflow-hidden"
         >
           <Image
-            src={GALLERY_IMAGES[0].src}
+            src="/images/Main Image.jpeg"
             alt=""
             aria-hidden
             fill
