@@ -16,21 +16,9 @@ const NAV_LINKS = [
   { label: "Kontakt", href: "#kontakt" },
 ];
 
-const GRUNDSTUECK_DATA = [
-  { label: "Grundstück Nr.", value: "9527" },
-  { label: "BFS Nr.", value: "120" },
-  { label: "Notariat", value: "Grundbuchamt Wald" },
-  { label: "EGRIS_EGRID", value: "CH380186487771" },
-  { label: "Fläche Liegenschaft [m²]", value: "535" },
-  { label: "Vollständigkeit", value: "Vollständig" },
-  { label: "Bodenbedeckung Art", value: "Acker, Wiese, Weide" },
-  { label: "Bodenbedeckung Qualität", value: "AV93" },
-  { label: "Bodenbedeckung Fläche [m²]", value: "263 (Gesamtfläche) / 1190" },
-  { label: "Koordinate", value: "2711757 / 1239306" },
-  { label: "X-Koordinate", value: "2711758.241" },
-  { label: "Y-Koordinate", value: "1239307.521" },
-  { label: "Höhe", value: "682.9 m" },
-  { label: "Punktzeichen", value: "Bolzen" },
+const GRUNDSTUECK_STATS = [
+  { value: "535 m²", label: "Grundstücksfläche" },
+  { value: "Acker, Wiese, Weide", label: "Nutzung" },
 ];
 
 const GALLERY_IMAGES = [
@@ -382,16 +370,17 @@ export default function Home() {
         <section id="grundstueck" className="py-24 bg-white">
           <div className="max-w-5xl mx-auto px-6">
             <p className="reveal text-amber-700 text-sm uppercase tracking-widest mb-2">Grundstück</p>
-            <h2 className="reveal reveal-d1 text-3xl font-bold text-stone-800 mb-12">Grundstück Nr. {GRUNDSTUECK_DATA[0].value}</h2>
-            <div className="reveal reveal-d1 rounded-2xl border border-stone-100 bg-stone-50 p-8">
-              <dl className="grid sm:grid-cols-2 gap-x-8 gap-y-5">
-                {GRUNDSTUECK_DATA.map((d) => (
-                  <div key={d.label}>
-                    <dt className="text-xs text-stone-400 uppercase tracking-widest mb-1">{d.label}</dt>
-                    <dd className="text-stone-800 font-medium">{d.value}</dd>
-                  </div>
-                ))}
-              </dl>
+            <h2 className="reveal reveal-d1 text-3xl font-bold text-stone-800 mb-12">Lage &amp; Nutzung</h2>
+            <div className="grid grid-cols-2 gap-4 max-w-md">
+              {GRUNDSTUECK_STATS.map((s, i) => (
+                <div
+                  key={s.label}
+                  className={`reveal reveal-d${i + 1} bg-stone-50 rounded-xl p-5 border border-stone-100 text-center`}
+                >
+                  <p className="text-xl font-bold text-stone-800">{s.value}</p>
+                  <p className="text-stone-500 text-sm mt-1">{s.label}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
