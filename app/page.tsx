@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import Carousel from "./Carousel";
 
 const LeafletMap = dynamic(() => import("./LeafletMap"), { ssr: false });
@@ -280,14 +281,14 @@ export default function Home() {
           id="objekt"
           className="relative min-h-[92vh] flex items-end bg-stone-800 overflow-hidden"
         >
-          <div
+          <Image
+            src={GALLERY_IMAGES[0].src}
+            alt=""
             aria-hidden
-            className="absolute inset-0 bg-stone-700"
-            style={{
-              backgroundImage: `url('/placeholder-scheune.png')`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
+            fill
+            preload
+            sizes="100vw"
+            className="object-cover"
           />
           <div
             aria-hidden
