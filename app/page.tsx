@@ -371,16 +371,33 @@ export default function Home() {
           <div className="max-w-5xl mx-auto px-6">
             <p className="reveal text-amber-700 text-sm uppercase tracking-widest mb-2">Grundstück</p>
             <h2 className="reveal reveal-d1 text-3xl font-bold text-stone-800 mb-12">Lage &amp; Nutzung</h2>
-            <div className="grid grid-cols-2 gap-4 max-w-md">
-              {GRUNDSTUECK_STATS.map((s, i) => (
-                <div
-                  key={s.label}
-                  className={`reveal reveal-d${i + 1} bg-stone-50 rounded-xl p-5 border border-stone-100 text-center`}
-                >
-                  <p className="text-xl font-bold text-stone-800">{s.value}</p>
-                  <p className="text-stone-500 text-sm mt-1">{s.label}</p>
+            <div className="grid lg:grid-cols-2 gap-12 items-start">
+              <div className="grid grid-cols-2 gap-4 max-w-md">
+                {GRUNDSTUECK_STATS.map((s, i) => (
+                  <div
+                    key={s.label}
+                    className={`reveal reveal-d${i + 1} bg-stone-50 rounded-xl p-5 border border-stone-100 text-center`}
+                  >
+                    <p className="text-xl font-bold text-stone-800">{s.value}</p>
+                    <p className="text-stone-500 text-sm mt-1">{s.label}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="reveal reveal-d2">
+                <div className="rounded-2xl border border-stone-100 bg-stone-50 p-4">
+                  <div className="relative aspect-[458/688] max-w-xs mx-auto">
+                    <Image
+                      src="/images/Plott.png"
+                      alt="Parzellenplan der Scheune Jonatal"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 320px"
+                      className="object-contain"
+                    />
+                  </div>
                 </div>
-              ))}
+                <p className="text-stone-400 text-xs text-center mt-3">Parzellenplan</p>
+              </div>
             </div>
           </div>
         </section>
