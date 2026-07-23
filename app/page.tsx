@@ -27,7 +27,6 @@ const GALLERY_IMAGES = [
   "IMG_9420.jpeg",
   "IMG_9421.jpeg",
   "IMG_9422.jpeg",
-  "IMG_9423.jpeg",
   "IMG_9424.jpeg",
   "IMG_9425.jpeg",
   "IMG_9430.jpeg",
@@ -287,7 +286,7 @@ export default function Home() {
           className="relative min-h-[92vh] flex items-end bg-stone-800 overflow-hidden"
         >
           <Image
-            src="/images/Main Image.jpeg"
+            src="/images/IMG_9423.jpeg"
             alt=""
             aria-hidden
             fill
